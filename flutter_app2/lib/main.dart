@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app2/User.dart';
 
 void main() {
   runApp(new FriendlyChat());
@@ -21,8 +22,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
-  String user="";
-  String pass="";
+  User user = new User.EmptyConstructor();
   final TextEditingController _username = new TextEditingController();
   final TextEditingController _password = new TextEditingController();
 
@@ -45,7 +45,7 @@ class LoginScreenState extends State<LoginScreen> {
               TextField(
                 controller: _username,
                 onChanged: (text){
-                  user = text;
+                  user.setUserName(text);
                 },
                 decoration: InputDecoration(
                   labelText: 'Username',
@@ -56,7 +56,7 @@ class LoginScreenState extends State<LoginScreen> {
               TextField(
                 controller: _password,
                 onChanged: (text){
-                  pass = text;
+                  user.setPassword(text);
                 },
                 decoration: InputDecoration(
                   labelText: 'Password',
@@ -72,7 +72,7 @@ class LoginScreenState extends State<LoginScreen> {
                   ),
                   RaisedButton(
                     child: Text('NEXT'),
-                    onPressed: () => _handleSubmitted(user,pass)
+                    onPressed: () => _handleSubmitted(user)
                   )
                 ],
               )
@@ -88,10 +88,27 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
 
-  void _handleSubmitted(String uName, String pWord) {
-
+  void _handleSubmitted(User user) {
+    if (user.isValidLogin()) {
+      Navigator.push( context,
+        MaterialPageRoute(builder: (context) => new SuccessLoginScreen()),
+      );
+    }
   }
+}
 
+class SuccessLoginScreen extends StatefulWidget {
+  @override
+  State createState() => new SuccessLoginScreenState();
+}
 
-
+class SuccessLoginScreenState extends State<SuccessLoginScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold (
+      appBar: new AppBar(
+        title: Text('Second Screen'),
+      ),
+    );
+  }
 }
