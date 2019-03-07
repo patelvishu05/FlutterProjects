@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app2/model/User.dart';
+import 'package:flutter_app2/PlaceHolderWidget.dart';
 
 void main() {
   runApp(new FriendlyChat());
@@ -106,12 +107,42 @@ class SuccessLoginScreen extends StatefulWidget {
 }
 
 class SuccessLoginScreenState extends State<SuccessLoginScreen> {
+  int _selectedIndex = 0;
+   final _widgetOptions = [
+    PlaceholderWidget(Colors.pink),
+    PlaceholderWidget(Colors.red),
+    PlaceholderWidget(Colors.cyan),
+    PlaceholderWidget(Colors.green),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold (
+      body: _widgetOptions[_selectedIndex],
       appBar: new AppBar(
         title: Text('Second Screen'),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>
+        [
+          BottomNavigationBarItem(icon: Icon(Icons.satellite), title: Text('Satellite')),
+          BottomNavigationBarItem(icon: Icon(Icons.calendar_today), title: Text('Calendar')),
+          BottomNavigationBarItem(icon: Icon(Icons.account_circle), title: Text ('Home')),
+          BottomNavigationBarItem(icon: Icon(Icons.accessible_forward), title: Text('Accessible')),
+        ],
+        currentIndex: _selectedIndex,
+        type: BottomNavigationBarType.fixed,
+        fixedColor: Colors.deepOrange,
+        onTap: _onItemTapped,
+      ),
     );
   }
+
+  void _onItemTapped(int index) {
+    setState(() {
+     _selectedIndex = index; 
+    });
+  }
+
+
 }
