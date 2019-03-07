@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app2/User.dart';
+import 'package:flutter_app2/model/User.dart';
 
 void main() {
   runApp(new FriendlyChat());
@@ -12,6 +12,9 @@ class FriendlyChat extends StatelessWidget {
     return new MaterialApp (
       title: "FriendlyChat",
       home: new LoginScreen(),
+      routes: <String,WidgetBuilder> {
+        '/dashboard': (BuildContext context) => new SuccessLoginScreen()
+      },
     );
   }
 }
@@ -72,6 +75,8 @@ class LoginScreenState extends State<LoginScreen> {
                   ),
                   RaisedButton(
                     child: Text('NEXT'),
+                    color: Colors.amber,
+                    shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                     onPressed: () => _handleSubmitted(user)
                   )
                 ],
@@ -90,9 +95,7 @@ class LoginScreenState extends State<LoginScreen> {
 
   void _handleSubmitted(User user) {
     if (user.isValidLogin()) {
-      Navigator.push( context,
-        MaterialPageRoute(builder: (context) => new SuccessLoginScreen()),
-      );
+      Navigator.of(context).pushNamed('/dashboard');
     }
   }
 }
