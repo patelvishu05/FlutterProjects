@@ -109,10 +109,10 @@ class SuccessLoginScreen extends StatefulWidget {
 class SuccessLoginScreenState extends State<SuccessLoginScreen> {
   int _selectedIndex = 0;
    final _widgetOptions = [
-    PlaceholderWidget(Colors.pink),
-    PlaceholderWidget(Colors.red),
-    PlaceholderWidget(Colors.cyan),
-    PlaceholderWidget(Colors.green),
+    PlaceholderWidget("SATELLITE"),
+    PlaceholderWidget("CALENDAR"),
+    PlaceholderWidget("ACCOUNT"),
+    PlaceholderWidget("ACCESSIBLE"),
   ];
 
   @override
