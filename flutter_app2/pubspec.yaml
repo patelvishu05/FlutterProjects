@@ -37,6 +37,11 @@ flutter:
   assets:
   - assets/icons/pill.png
   - assets/icons/signIn.png
+  fonts:
+    - family: ProductSans
+      fonts:
+      - asset: fonts/ProductSansRegular.ttf
+
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

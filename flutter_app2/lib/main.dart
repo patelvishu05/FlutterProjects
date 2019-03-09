@@ -12,6 +12,7 @@ class FriendlyChat extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp (
       title: "FriendlyChat",
+      theme: ThemeData(fontFamily: 'ProductSans'),
       home: new LoginScreen(),
       routes: <String,WidgetBuilder> {
         '/dashboard': (BuildContext context) => new SuccessLoginScreen()
@@ -40,7 +41,7 @@ class LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 110.0),
               Column(
                 children: <Widget>[
-                  Image.asset('assets/signIn.png'),
+                  Image.asset('assets/icons/signIn.png'),
                   SizedBox(height: 20.0),
                   Text('MATERIAL LOGIN'),
                 ],
